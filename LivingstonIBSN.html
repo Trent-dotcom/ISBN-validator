@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head><meta charset="utf-8"><title>Trent's ISBN Validation</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ISBN.css">
+    <script>
+        function validate(){
+            let check =  document.getElementById("IBSN").value; 
+            if (check.match(/\d{13}/) )
+            {
+                validate13()
+                return;
+            }
+            else{
+            
+                if (check.match(/\d{11}/) )
+                {
+                        alert("you entered an incorrect string length please try again");
+                        
+                return;
+            }
+            
+            }
+            if (check.match(/\d{10}/) )
+            {
+                validate10()
+            return;
+                        
+            }
+            else { 
+             if (check.match(/\d{12}/) )
+             {
+                        alert("you entered an incorrect string length please try again");
+                      return;  
+             }
+            }
+            if (check.match(/[a-z]/) )
+            {
+                        alert("numbers only");
+                        return;
+            }
+            
+            if (check.match(/\d/) )
+            {
+                        alert("you entered an incorrect string length please try again");
+                        return;
+        }
+        }
+        function validate10()
+        {
+            let check10 =  document.getElementById("IBSN").value; 
+            var sum  = 0;
+            for (i=0;i<10;i++)
+            {
+               sum += check10[i] * (10 - i); 
+            }
+              var result =  sum % 11;
+                if (result != 0){
+                    alert("ISBN10 not valid");
+                }
+                else {
+                    alert("valid ISBN10");
+                }
+                return; 
+                }
+
+function validate13()
+{
+    let check13 =  document.getElementById("IBSN").value; 
+            var sum  = 0;
+            for (i=0;i<13;i++)
+            { if (i % 2 == 0)
+                {
+               sum += check13[i] * 1; 
+            }
+            else{ sum += check13[i] * 3;
+            }
+            }
+              var result2 = sum % 10;
+                if (result2 != 0)
+                {
+                    alert("ISBN13 not valid");
+                }
+                else {
+                    alert("valid ISBN13");
+                } 
+                return;
+}
+    </script>
+
+   </head>
+  <body>
+      <div>
+      <label for="ibsn">Enter ISBN - 10 or 13: </label>
+         <input  type="text" id="IBSN" name="ibsn" maxlength="13" minlength="10" multiple> <button onclick="validate()">Validate</button>
+         </div>
+    </body>
+</html>
